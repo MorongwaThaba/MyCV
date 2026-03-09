@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morongwa Thaba | Developer Portfolio</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --background: #0b0f17;
+        --background-soft: #111827;
+        --surface: #151c28;
+        --surface-two: #1b2433;
+        --border: rgba(255, 255, 255, 0.08);
+        --text: #e5eefb;
+        --muted: #93a4bd;
+        --green: #7ee787;
+        --blue: #79c0ff;
+        --purple: #d2a8ff;
+        --red: #f16f66;
+        --yellow: #e9d3a1;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(121, 192, 255, 0.08),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(210, 168, 255, 0.08),
+            transparent 25%
+          ),
+          var(--background);
+        color: var(--text);
+      }
+
+      .nav-link,
+      .navbar-brand,
+      .form-control,
+      .btn,
+      .editor-tab,
+      .line-number,
+      .contact-label,
+      .mini-note,
+      .footer-note,
+      .tag-item,
+      .terminal-text,
+      .code-line {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .navbar {
+        background: rgba(11, 15, 23, 0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .navbar-brand {
+        color: var(--text);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .navbar-brand:hover {
+        color: var(--blue);
+      }
+
+      .nav-link {
+        color: var(--muted);
+        font-size: 0.92rem;
+        transition: 0.25s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--blue);
+      }
+
+      .hero-wrapper {
+        padding-top: 7rem;
+        padding-bottom: 2rem;
+      }
+
+      .editor-window {
+        border: 1px solid var(--border);
+        border-radius: 1.4rem;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: linear-gradient(
+          180deg,
+          rgba(21, 28, 40, 0.96),
+          rgba(14, 20, 30, 0.96)
+        );
+      }
+
+      .editor-topbar {
+        background: rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid var(--border);
+        padding: 0.85rem 1rem;
+      }
+
+      .editor-dots {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .editor-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .dot-red {
+        background: #ff5f57;
+      }
+
+      .dot-yellow {
+        background: #febc2e;
+      }
+
+      .dot-green {
+        background: #28c840;
+      }
+
+      .editor-tabbar {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: -14px;
+      }
+
+      .editor-tab {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        border-bottom: none;
+        color: var(--muted);
+        padding: 0.45rem 0.8rem;
+        border-radius: 0.7rem 0.7rem 0 0;
+        font-size: 0.8rem;
+      }
+
+      .editor-tab.active {
+        background: rgba(121, 192, 255, 0.08);
+        color: var(--blue);
+      }
+
+      .editor-body {
+        padding: 1.4rem;
+      }
+      .hero-image-shell {
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        overflow: hidden;
+        width: 100%;
+        max-width: 560px;
+        background: var(--background);
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+      }
+
+      .code-layout {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 0;
+        align-items: start;
+      }
+
+      .line-numbers {
+        padding-top: 0.15rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .line-number {
+        color: rgba(147, 164, 189, 0.55);
+        text-align: right;
+        padding-right: 1rem;
+        line-height: 2;
+        font-size: 0.9rem;
+      }
+
+      .code-content {
+        padding-left: 1.2rem;
+      }
+
+      .code-line {
+        line-height: 1.9;
+        font-size: 0.95rem;
+        word-break: break-word;
+      }
+
+      .comment {
+        color: #6e7681;
+      }
+
+      .keyword {
+        color: var(--red);
+      }
+
+      .property {
+        color: #79c1ffd3;
+      }
+
+      .string {
+        color: #f3a37bdf;
+      }
+
+      .function-name {
+        color: var(--yellow);
+      }
+
+      .plain {
+        color: #e9b130;
+      }
+
+      .section-block {
+        padding-top: 0rem;
+        padding-bottom: 2rem;
+      }
+
+      .terminal-card {
+        background: linear-gradient(
+          180deg,
+          rgba(21, 28, 40, 0.96),
+          rgba(14, 20, 30, 0.96)
+        );
+        border: 1px solid var(--border);
+        border-radius: 1.2rem;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .terminal-header {
+        display: flex;
+        padding: 0.95rem 1rem;
+        border-bottom: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .mini-note {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        border-bottom: none;
+        border-radius: 0.7rem 0.7rem 0 0;
+        padding: 0.4rem 0.75rem;
+        background: rgba(255, 255, 255, 0.03);
+        margin-bottom: -14px;
+      }
+
+      .terminal-body {
+        padding: 1.25rem;
+      }
+
+      .terminal-text {
+        font-size: 0.9rem;
+        line-height: 1.9;
+      }
+
+      .terminal-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .contact-list li {
+        display: flex;
+        gap: 0.9rem;
+        align-items: start;
+        padding: 0.85rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .contact-list li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .contact-list i {
+        color: var(--muted);
+        font-size: 1rem;
+        margin-top: 0.2rem;
+      }
+
+      .contact-label {
+        color: var(--blue);
+        font-size: 0.85rem;
+      }
+
+      .contact-value {
+        color: var(--text);
+      }
+
+      .message-form .form-label {
+        color: var(--blue);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+      }
+
+      .message-form .form-control {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 0.85rem;
+        padding: 0.9rem 1rem;
+        box-shadow: none;
+      }
+
+      .message-form .form-control::placeholder {
+        color: rgba(147, 164, 189, 0.75);
+      }
+
+      .message-form .form-control:focus {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(121, 192, 255, 0.45);
+        color: var(--text);
+        box-shadow: 0 0 0 0.18rem rgba(121, 192, 255, 0.08);
+      }
+
+      .message-form textarea.form-control {
+        min-height: 180px;
+        resize: vertical;
+      }
+
+      .btn-code {
+        border-radius: 999px;
+        padding: 0.8rem 1rem;
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          135deg,
+          rgba(121, 192, 255, 0.12),
+          rgba(210, 168, 255, 0.12)
+        );
+        color: var(--text);
+        font-size: 0.88rem;
+      }
+
+      .btn-code:hover {
+        color: var(--blue);
+        border-color: rgba(121, 192, 255, 0.35);
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+      }
+
+      .tag-item {
+        border: 1px solid var(--border);
+        padding: 0.5rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.82rem;
+        transition: 0.25s ease;
+      }
+
+      .tag-item:hover {
+        transform: translateY(-3px);
+        border-color: rgba(121, 192, 255, 0.35);
+        color: var(--blue);
+      }
+
+      .footer-shell {
+        padding-bottom: 3rem;
+      }
+
+      .footer-note {
+        text-align: center;
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 991.98px) {
+        .hero-image-shell {
+          max-width: 100%;
+        }
+        .editor-tabbar {
+          justify-content: flex-start;
+          margin-top: 0.75rem;
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .code-layout {
+          grid-template-columns: 42px 1fr;
+        }
+        .line-number {
+          padding-right: 0.6rem;
+          font-size: 0.8rem;
+        }
+        .code-content {
+          padding-left: 0.8rem;
+        }
+        .code-line {
+          font-size: 0.86rem;
+        }
+        .hero-wrapper {
+          padding-top: 6rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- navigation section -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#home">morongwa.cv</a>
+
+        <button
+          class="navbar-toggler border-0 shadow-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavigation"
+          aria-controls="mainNavigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="bi bi-list text-white fs-2"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavigation">
+          <ul class="navbar-nav ms-auto gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">about</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#education">education</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#experience">experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#objective">objective</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- hero section -->
+    <header class="hero-wrapper" id="home">
+      <div class="container">
+        <div class="editor-window">
+          <div class="editor-topbar">
+            <div class="row align-items-center g-3">
+              <div class="col-lg-3">
+                <div class="editor-dots">
+                  <span class="editor-dot dot-red"></span>
+                  <span class="editor-dot dot-yellow"></span>
+                  <span class="editor-dot dot-green"></span>
+                </div>
+              </div>
+
+              <div class="col-lg-9">
+                <div class="editor-tabbar justify-content-lg-end">
+                  <span class="editor-tab active">index.html</span>
+                  <span class="editor-tab">styles.css</span>
+                  <span class="editor-tab">script.js</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- profile image -->
+          <div class="editor-body">
+            <div class="row g-4 align-items-start">
+              <div class="col-lg-6">
+                <div class="hero-image-shell mb-3">
+                  <img
+                    src="img.jpg"
+                    alt="Profile photo of Morongwa Thaba"
+                    class="hero-image"
+                  />
+                </div>
+              </div>
+              <!-- code UI about me-->
+              <div class="col-lg-6">
+                <div class="code-layout">
+                  <div class="line-numbers">
+                    <div class="line-number">1</div>
+                    <div class="line-number">2</div>
+                    <div class="line-number">3</div>
+                    <div class="line-number">4</div>
+                    <div class="line-number">5</div>
+                    <div class="line-number">6</div>
+                    <div class="line-number">7</div>
+                    <div class="line-number">8</div>
+                    <div class="line-number">9</div>
+                    <div class="line-number">10</div>
+                    <div class="line-number">11</div>
+                    <div class="line-number">12</div>
+                    <div class="line-number">13</div>
+                    <div class="line-number">14</div>
+                  </div>
+
+                  <div class="code-content">
+                    <div class="code-line">
+                      <span class="comment"
+                        >// Welcome to my Personal Webpage</span
+                      >
+                    </div>
+                    <div class="code-line">
+                      <span class="keyword">const</span>
+                      <span class="property">candidate</span>
+                      <span class="plain">=</span> <span class="plain">{</span>
+                    </div>
+
+                    <div class="code-line">
+                      <span class="property">name</span
+                      ><span class="plain">:</span>
+                      <span class="string">"Morongwa"</span
+                      ><span class="plain">,</span>
+                    </div>
+
+                    <div class="code-line">
+                      <span class="property">about</span
+                      ><span class="plain">:</span>
+                      <span class="string"
+                        >"Digital Media Design graduate with a growing focus in
+                        software development, combining design thinking,
+                        technical learning, and creative digital
+                        experience"</span
+                      ><span class="plain">,</span>
+                    </div>
+
+                    <div class="code-line">
+                      <span class="property">passion</span
+                      ><span class="plain">:</span>
+                      <span class="string"
+                        >"Combining design thinking with technical
+                        implementation"</span
+                      ><span class="plain">,</span>
+                    </div>
+
+                    <div class="code-line">
+                      <span class="property">status</span
+                      ><span class="plain">:</span>
+                      <span class="string"
+                        >"Open to opportunities and continuous learning"</span
+                      >
+                    </div>
+
+                    <div class="code-line"><span class="plain">};</span></div>
+                    <div class="code-line"></div>
+                    <div class="code-line">
+                      <span class="keyword">function</span>
+                      <span class="function-name">downloadCV</span
+                      ><span class="plain">() {</span>
+                    </div>
+
+                    <div class="code-line"><span class="plain">}</span></div>
+                    <div class="code-line"></div>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                  <a href="#contact" class="btn btn-code">
+                    <i class="bi bi-send-fill me-2"></i>
+                    contact()
+                  </a>
+                  <!-- TO DO!! -->
+                  <a href="MorongwaThaba.pdf" download class="btn btn-code">
+                    <i class="bi bi-file-earmark-arrow-down-fill me-2"></i>
+                    downloadCV()
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- about me -->
+      <section class="section-block" id="about">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-lg-12">
+              <div class="terminal-card">
+                <div class="terminal-header">
+                  <span class="mini-note"
+                    ><i class="bi bi-stars"></i> ABOUT ME</span
+                  >
+                </div>
+
+                <div class="terminal-body terminal-text">
+                  <p>
+                    I am a motivated and creative graduate with a background in
+                    Digital Media Design and a growing focus on front-end and
+                    software development. My academic experience has shaped the
+                    way I think about visual communication, digital
+                    storytelling, and user-centred design, while my current
+                    software engineering training is helping me turn that design
+                    awareness into technical execution.
+                  </p>
+
+                  <p>
+                    Alongside my studies, I have developed freelance experience
+                    in video editing and content refinement, contributing to
+                    audience growth through polished and consistent creative
+                    work. This has strengthened my attention to detail, my sense
+                    of digital presentation, and my understanding of how
+                    creative decisions affect user engagement.
+                  </p>
+
+                  <p>
+                    My goal is to build a career where design and development
+                    work together. I am especially interested in opportunities
+                    where I can keep growing as a developer while bringing a
+                    visually thoughtful, design-conscious approach to digital
+                    products and interfaces.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- contact details -->
+      <section class="section-block" id="contact">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-lg-5">
+              <div class="terminal-card h-100">
+                <div class="terminal-header">
+                  <span class="mini-note"
+                    ><i class="bi bi-person-lines-fill"></i> CONTACT
+                    DETAILS</span
+                  >
+                </div>
+
+                <div class="terminal-body">
+                  <ul class="contact-list">
+                    <li>
+                      <i class="bi bi-person-fill"></i>
+                      <div>
+                        <div class="contact-label">full name</div>
+                        <div class="contact-value">Morongwa Thaba</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <i class="bi bi-envelope-fill"></i>
+                      <div>
+                        <div class="contact-label">email</div>
+                        <div class="contact-value">
+                          morongwaThaba04@gmail.com
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <i class="bi bi-github"></i>
+                      <div>
+                        <div class="contact-label">github</div>
+                        <div class="contact-value">
+                          github.com/MorongwaThaba
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <i class="bi bi-linkedin"></i>
+                      <div>
+                        <div class="contact-label">linkedin</div>
+                        <div class="contact-value">
+                          linkedin.com/in/morongwathaba
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- message from -->
+            <div class="col-lg-7">
+              <div class="terminal-card h-100">
+                <div class="terminal-header">
+                  <span class="mini-note"
+                    ><i class="bi bi-envelope-paper-heart"></i> MESSAGE
+                    FORM</span
+                  >
+                </div>
+
+                <div class="terminal-body">
+                  <form
+                    action="mailto:morongwaThaba04@gmail.com"
+                    method="post"
+                    enctype="text/plain"
+                    class="message-form"
+                  >
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label for="fullName" class="form-label">name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="fullName"
+                          name="Name"
+                          placeholder="Enter your full name"
+                          required
+                        />
+                      </div>
+
+                      <div class="col-md-6">
+                        <label for="emailAddress" class="form-label"
+                          >email</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="emailAddress"
+                          name="Email"
+                          placeholder="Enter your email address"
+                          required
+                        />
+                      </div>
+
+                      <div class="col-12">
+                        <label for="subjectLine" class="form-label"
+                          >subject</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="subjectLine"
+                          name="Subject"
+                          placeholder="What would you like to discuss?"
+                        />
+                      </div>
+
+                      <div class="col-12">
+                        <label for="messageBox" class="form-label"
+                          >message</label
+                        >
+                        <textarea
+                          class="form-control"
+                          id="messageBox"
+                          name="Message"
+                          placeholder="Write your message here..."
+                          required
+                        ></textarea>
+                      </div>
+
+                      <div
+                        class="col-12 d-flex flex-wrap gap-3 justify-content-center"
+                      >
+                        <button type="submit" class="btn btn-code">
+                          <i class="bi bi-send-fill me-2"></i>
+                          sendMessage()
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- technical skills -->
+      <section class="section-block" id="skills">
+        <div class="container">
+          <div class="row g-4">
+            <div class="col-lg-4">
+              <div class="terminal-card h-100">
+                <div class="terminal-header">
+                  <span class="mini-note"
+                    ><i class="bi bi-code-slash"></i> TECHNICAL SKILLS</span
+                  >
+                </div>
+
+                <div class="terminal-body">
+                  <div class="tag-list">
+                    <span class="tag-item">HTML5</span>
+                    <span class="tag-item">CSS3</span>
+                    <span class="tag-item">Bootstrap</span>
+                    <span class="tag-item">JavaScript</span>
+                    <span class="tag-item">Git and GitHub version control</span>
+                    <span class="tag-item">Web Storage APIs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="terminal-card h-100">
+                <div class="terminal-header">
+                  <span class="mini-note"
+                    ><i class="bi bi-palette-fill"></i> DESIGN TOOLS</span
+                  >
+                </div>
+
+                <div class="terminal-body">
+                  <div class="tag-list">
+                    <span class="tag-item">Figma</span>
+                    <span class="tag-item">Adobe Creative Suite</span>
+                    <span class="tag-item">Multimedia Design</span>
+                    <span class="tag-item"
+                      >UI and Visual Design Principles</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="terminal-card h-100">
+                <div class="terminal-header">
+                  <span class="mini-note"
+                    ><i class="bi bi-briefcase-fill"></i> SOFT SKILLS</span
+                  >
+                </div>
+
+                <div class="terminal-body">
+                  <div class="tag-list">
+                    <span class="tag-item">Problem Solving</span>
+                    <span class="tag-item">Communication and teamwork</span>
+                    <span class="tag-item">Creative Thinking</span>
+                    <span class="tag-item">Adaptability</span>
+                    <span class="tag-item">User Awareness</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- education -->
+      <section class="section-block" id="education">
+        <div class="container">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <span class="mini-note"
+                ><i class="bi bi-mortarboard-fill"></i> EDUCATION</span
+              >
+            </div>
+
+            <div class="terminal-body terminal-text">
+              <p>
+                <span class="keyword">const</span>
+                <span class="property">education</span>
+                <span class="plain">=</span> <span class="plain">[</span>
+              </p>
+              <p>
+                <span class="plain">{</span>
+                <span class="property">institution</span
+                ><span class="plain">:</span>
+                <span class="string">"Stellenbosch University"</span
+                ><span class="plain">,</span>
+                <span class="property">qualification</span
+                ><span class="plain">:</span>
+                <span class="string"
+                  >"Full Stack Web &amp; Software Engineer Bootcamp"</span
+                ><span class="plain">,</span> <span class="property">years</span
+                ><span class="plain">:</span>
+                <span class="string">"2026 - Present"</span>
+                <span class="plain">},</span>
+              </p>
+              <p>
+                <span class="plain">{</span>
+                <span class="property">institution</span
+                ><span class="plain">:</span>
+                <span class="string">"University of Johannesburg"</span
+                ><span class="plain">,</span>
+                <span class="property">qualification</span
+                ><span class="plain">:</span>
+                <span class="string">"BA Digital Media Design"</span
+                ><span class="plain">,</span> <span class="property">years</span
+                ><span class="plain">:</span>
+                <span class="string">"2022 - 2025"</span>
+                <span class="plain">},</span>
+              </p>
+              <p>
+                <span class="plain">{</span>
+                <span class="property">institution</span
+                ><span class="plain">:</span>
+                <span class="string">"HeronBridge College"</span
+                ><span class="plain">,</span>
+                <span class="property">qualification</span
+                ><span class="plain">:</span>
+                <span class="string">"National Senior Certificate (NSC)"</span
+                ><span class="plain">,</span> <span class="property">years</span
+                ><span class="plain">:</span>
+                <span class="string">"2018 - 2021"</span>
+                <span class="plain">}</span>
+              </p>
+              <p><span class="plain">];</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- work experience -->
+      <section class="section-block" id="experience">
+        <div class="container">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <span class="mini-note"
+                ><i class="bi bi-briefcase-fill"></i> EXPERIENCE</span
+              >
+            </div>
+
+            <div class="terminal-body terminal-text">
+              <p>
+                <span class="keyword">public class</span>
+                <span class="class-name">FreelanceExperience</span>
+                <span class="plain">{</span>
+              </p>
+              <p>
+                <span class="keyword">public string</span>
+                <span class="property">Role</span> <span class="plain">=</span>
+                <span class="string"
+                  >"Freelance Video Editor and Content Development"</span
+                ><span class="plain">;</span>
+              </p>
+              <p>
+                <span class="keyword">public string</span>
+                <span class="property">Context</span>
+                <span class="plain">=</span>
+                <span class="string">"Client-based freelance work"</span
+                ><span class="plain">;</span>
+              </p>
+              <p>
+                <span class="keyword">public string</span>
+                <span class="property">Impact</span>
+                <span class="plain">=</span>
+                <span class="string"
+                  >"Contributed to approximately 10,000 subscriber growth within
+                  one year."</span
+                ><span class="plain">;</span>
+              </p>
+              <p>
+                <span class="keyword">public string</span>
+                <span class="property">Contribution</span>
+                <span class="plain">=</span>
+                <span class="string"
+                  >"Edited video content to improve engagement, consistency, and
+                  visual refinement."</span
+                ><span class="plain">;</span>
+              </p>
+              <p><span class="plain">}</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- career objective -->
+      <section class="section-block" id="objective">
+        <div class="container">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <span class="mini-note"
+                ><i class="bi bi-rocket-takeoff-fill"></i> CAREER
+                OBJECTIVE</span
+              >
+            </div>
+
+            <div class="terminal-body terminal-text">
+              <p>
+                I am currently seeking opportunities to continue growing in
+                front-end and software development while applying my background
+                in digital media design, visual communication, and creative
+                problem-solving to real digital products and experiences.
+              </p>
+              <p>
+                I am especially drawn to roles where I can keep learning,
+                contribute thoughtfully, and grow into a developer who builds
+                experiences that are not only technically sound, but also
+                visually strong and user-aware.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-shell">
+      <div class="container">
+        <p class="footer-note">
+          // &copy; 2026 Morongwa Thaba. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
